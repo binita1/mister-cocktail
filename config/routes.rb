@@ -1,20 +1,30 @@
 Rails.application.routes.draw do
 
-  root 'cocktails#index'
+  # get 'doses/index'
 
-  get 'cocktails/index'
+  # root 'cocktails#index'
 
-  get 'cocktails/new'
+  # get 'cocktails/index'
 
-  get 'cocktails/show'
+  # get 'cocktails/new'
 
-  get 'cocktails/create'
+  # get 'cocktails/show'
 
-  get 'cocktails/edit'
+  # get 'cocktails/create'
 
-  get 'cocktails/update'
+  # get 'cocktails/edit'
 
-  get 'cocktails/destroy'
+  # get 'cocktails/update'
+
+  # get 'cocktails/destroy/:id', to: "doses#destroy" , as: :path_of_death
+  #
+  resources :cocktails, only: [:new, :create, :show, :index] do
+    resources :doses
+  end
+
+  delete 'doses/:id', to: "doses#destroy"
+
+end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -70,4 +80,3 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-end
