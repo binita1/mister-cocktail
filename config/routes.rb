@@ -1,28 +1,14 @@
 Rails.application.routes.draw do
 
-  # get 'doses/index'
-
-  # root 'cocktails#index'
-
-  # get 'cocktails/index'
-
-  # get 'cocktails/new'
-
-  # get 'cocktails/show'
-
-  # get 'cocktails/create'
-
-  # get 'cocktails/edit'
-
-  # get 'cocktails/update'
+  root 'cocktails#index'
 
   # get 'cocktails/destroy/:id', to: "doses#destroy" , as: :path_of_death
   #
-  resources :cocktails, only: [:new, :create, :show, :index] do
-    resources :doses
+  resources :cocktails, only: [:new, :create, :show, :index, :destroy] do
+    resources :doses, except: [:destroy]
   end
 
-  delete 'doses/:id', to: "doses#destroy"
+  resources :doses, only: [:destroy]
 
 end
 
